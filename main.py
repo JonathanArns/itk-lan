@@ -106,7 +106,7 @@ world = {
         [" ", " ", " ", " ", " ", " ", " ", " ", " ", ",", "|", "`", " ", " ", " ", "_", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " ", " ", "_", " ", " ", "_", " ", " ", "_", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " ", " ", "|", "|", "|", " ", " ", " ", "_", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " ", " ", " ", " ", "|", "|", "|", " ", " ", " ", "_", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", "|", "|", "|", " ", " ", " ", "_", " ", " ", " ", "A", "O", " ", " ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " ", " ", "_", " ", " ", "_", " ", " ", "_", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " ", " ", "|", "|", ",", " ", " ", " ", "_", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "_", "_", " ", " ", "_", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
@@ -122,7 +122,8 @@ world = {
 npcs = [
     ["Silvia", 46, 5, 4, "Mooncakes will be ready soon :)", "Kanelbullarna är 5 Kronor."],
     ["Dante", 11, 22, 4, "ME ME ME!", "Sudo make me a sandwich!", "The position of X senator will soon be open..."],
-    ["Froosty", 22, 14, 4, "We're gonna do league 5vs5 hopefully in like 35ish.", "Where is the root?"],
+    ["Froosty", 22, 14, 4, "We're gonna do league 5vs5 hopefully in like 35ish.", "Where is the root?", "I hate Dante :P}"],
+    ["Tove", 71, 19, 4, "Don't uproot the root", "Who wants to raid a gym?"],
 ]
 x = 21
 y = 5
@@ -540,7 +541,7 @@ def main_loop():
                 if mtg_focus[0] > 4:
                     mtg_focus [0] = 4
                 while len(mtg_grid[mtg_focus[0]]) == 0:
-                    mtg_focus[0] += 1
+                    mtg_focus[0] -= 1
                 if mtg_focus[1] < 0:
                     mtg_focus [1] = 0
                 if mtg_focus[1] >= len(mtg_grid[mtg_focus[0]]):
@@ -656,11 +657,12 @@ def main_loop():
                         jumping = 1.5
                     else:
                         jumping -= 1
-                    world["smash"][x][y] = world["smash"][x][y][:-1]
-                    world["smash"][x][y+1] = world["smash"][x][y+1][:-1]
-                    y += 1
-                    world["smash"][x][y] += "A"
-                    world["smash"][x][y+1] += "@"
+                    if y < screen_height-2:
+                        world["smash"][x][y] = world["smash"][x][y][:-1]
+                        world["smash"][x][y+1] = world["smash"][x][y+1][:-1]
+                        y += 1
+                        world["smash"][x][y] += "A"
+                        world["smash"][x][y+1] += "@"
                 elif jumping == 1.5:
                     jumping = 1
 
