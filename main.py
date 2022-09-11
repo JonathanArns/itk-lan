@@ -204,7 +204,8 @@ def enter_smash():
     global x, y, ex, ey, old_x, old_y, jumping, falling, ejumping, efalling, current_room
     world["smash"] = new_smash_world()
     current_room = "smash"
-    old_x, old_y = x,     x, y = 13, 10
+    old_x, old_y = x, y
+    x, y = 13, 10
     ex, ey = 67, 10
     jumping, falling, ejumping, efalling = 0, 0, 0, 0
     world["smash"][x][y] += "A"
